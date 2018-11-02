@@ -7,5 +7,5 @@ class User(AbstractUser):
     #       members/admin.py
     # 2. ec-deploy/.media/user 폴더에 업로드한 파일이 저장되도록 설정
     #       MEDIA_ROOT , MEDIA_URL
-    img_profile = models.ImageField(upload_to='user',blank=True)
+    img_profile = models.ImageField(upload_to='user', blank=True)
 
