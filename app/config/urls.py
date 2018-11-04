@@ -26,6 +26,6 @@ urlpatterns = [
 ]
 
 urlpatterns += static(
-    prefix=settings.base.MEDIA_URL,
-    document_root=settings.base.MEDIA_ROOT,
+    prefix=settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT,
 )
