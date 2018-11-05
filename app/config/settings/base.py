@@ -24,6 +24,9 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 STATIC_URL = '/static/'
+# collectstatic 했을 때 , 파일이 모이는 곳 .
+# STATICFILES_STORAGE 를
+# FileSystemStorage 로 지정 했을 떄, 사용
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')

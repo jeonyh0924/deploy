@@ -11,7 +11,7 @@ RUN         apt -y dist-upgrade
 RUN         apt -y install python3-pip
 
 # Nginx, uWSGI 설치 (WebServer, WSGI)
-RUN         apt -y install nginx
+RUN         apt -y install nginx supervisor
 RUN         pip3 install uwsgi
 
 # docker build할때의 PATH에 해당하는 폴더의 전체 내용을
@@ -27,7 +27,8 @@ WORKDIR     /srv/project
 
 # settings모듈에 대한 환경변수 설정
 # export DJANGO_SETTINGS_MODULE=config.settings.production
-ENV         DJANGO_SETTINGS_MODULE  config.settings.dev
+ENV         DJANGO_SETTINGS_MODULE  config.settings.production
+ENV         LANG                    C.UTF-8
 
 # 프로세스를 실행할 명령
 WORKDIR     /srv/project/app
@@ -44,3 +45,9 @@ RUN         cp -f  /srv/project/.config/app.nginx \
                    /etc/nginx/sites-available
 RUN         ln -sf /etc/nginx/sites-available/app.nginx \
                    /etc/nginx/sites-enabled/app.nginx
+# supervisor 설정파일 복사
+RUN         cp -f  /srv/project/.config/supervisord.conf \
+                   /etc/supervisor/conf.d/
+
+# Command 로 supervisor 실행
+CMD         supervisord -n
