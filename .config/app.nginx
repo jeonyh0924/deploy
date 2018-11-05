@@ -1,23 +1,28 @@
-# /etc/nginx/sites-avilable/
+# app.nginx
+
 server {
-    # 80 번 포트로부터 받은 요청을 처리
+    # 80번 포트로부터 받은 요청을 처리
     listen 80;
     # 도메인이 'localhost'에 해당 할 때
     server_name localhost;
-
     # 인코딩 방식
     charset utf-8;
-
     # request/response의 최대 사이즈
     # (기본값이 매우 작음)
     client_max_body_size 128M;
 
-    # ('/'부터 시작) -> 모든 URL연결에 대해
-    location /{
-        #   uwsgi와의 연결에 unix 소켓을 사용
-        #   "/tmp/app.sock" 파일을 사용
-        uwsgi_pass  unigx:///tmp/app.sock;
+    #('/'부터 시작) -> 모든 URL연결에 대해
+    location / {
+        # uwsgi와의 연결에 unix소켓을 사용
+        # "/tmp/app.sock"파일을 사용
+        uwsgi_pass  unix:///tmp/app.sock;
         include     uwsgi_params;
     }
+
+    location /static/ {
+        alias /srv/project/.static/;
+    }
+    location /media/ {
+        alias /srv/project/.media/;
+    }
 }
-#이 하나가 가상의 서버가 된다.
