@@ -1,2 +1,0 @@
-ipython<7.2
-awsebcli<3.15
