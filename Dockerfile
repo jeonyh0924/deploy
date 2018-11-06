@@ -17,7 +17,7 @@ RUN         pip3 install uwsgi
 # Image의 /srv/project/폴더 내부에 복사
 # requirements.txt의 내용이 변경이 없으면 RUN을 건너뛰고
 # 변경사항이 있으면 RUN을 실행한다
-COPY        requirements.txt /tmp/
+COPY        requirements.txt /tmp/requirements.txt
 RUN         pip3 install -r /tmp/requirements.txt
 
 # 전체 소스코드 복
