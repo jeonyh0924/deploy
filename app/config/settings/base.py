@@ -24,18 +24,12 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 STATIC_URL = '/static/'
-# collectstatic 했을 때 , 파일이 모이는 곳 .
-# STATICFILES_STORAGE 를
-# FileSystemStorage 로 지정 했을 떄, 사용
+# collectstatic했을 때 파일이 모이는 곳
+#  STATICFILES_STORAGE를
+#  FileSystemStorage로 지정했을 때만 사용
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
-
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.amazonaws.com',
-]
 
 # Auth
 AUTH_USER_MODEL = 'members.User'

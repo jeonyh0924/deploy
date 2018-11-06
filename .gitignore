@@ -1,3 +1,6 @@
+# Log ROOT
+/.log
+
 # Secrets
 /.secrets
 
