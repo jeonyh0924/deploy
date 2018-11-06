@@ -5,14 +5,13 @@
 FROM        ubuntu:18.04
 MAINTAINER  hungyb0924@gmail.com
 
-# 패키지 업그레이드, python3 설치
+ENV         LANG                    C.UTF-8
+
 RUN         apt -y update
 RUN         apt -y dist-upgrade
-RUN         apt -y install python3-pip
-
-# Nginx, uWSGI 설치 (WebServer, WSGI)
-RUN         apt -y install nginx supervisor
+RUN         apt -y install gcc nginx supervisor
 RUN         pip3 install uwsgi
+
 
 # docker build할때의 PATH에 해당하는 폴더의 전체 내용을
 # Image의 /srv/project/폴더 내부에 복사
@@ -24,11 +23,6 @@ RUN         pip3 install -r /tmp/requirements.txt
 # 전체 소스코드 복
 COPY        ./     /srv/project
 WORKDIR     /srv/project
-
-# settings모듈에 대한 환경변수 설정
-# export DJANGO_SETTINGS_MODULE=config.settings.production
-ENV         DJANGO_SETTINGS_MODULE  config.settings.production
-ENV         LANG                    C.UTF-8
 
 # 프로세스를 실행할 명령
 WORKDIR     /srv/project/app
