@@ -3,7 +3,7 @@ backcall==0.1.0
 boto3==1.9.35
 botocore==1.12.35
 decorator==4.3.0
-Django==2.1.2
+Django==2.1.11
 django-storages==1.7.1
 docutils==0.14
 ipython==7.1.1
